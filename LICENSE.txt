@@ -172,6 +172,15 @@
       defend, and hold each Contributor harmless for any liability
       incurred by, or claims asserted against, such Contributor by reason
       of your accepting any such warranty or additional liability.
+   
+   
+   EXEMPLARY CLAUSE:
+   10. Any and all code submitted to this repository will have varying
+       levels of use.  Open Source material will be labeled "follows 
+       licensing guidelines set forth in "Apache 2.0"."  If code files
+       include the words "Not for Public Use."  There are no available
+       licenses for said files and are considered "READ-ONLY".
+
 
    END OF TERMS AND CONDITIONS
 
@@ -187,6 +196,7 @@
       identification within third-party archives.
 
    Copyright 2019 Chris Messick
+   
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
