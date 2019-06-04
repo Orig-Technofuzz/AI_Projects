@@ -1,3 +1,6 @@
+#copyright 2019 Chris Messick
+#Not for Public Use
+
 import copy
 import gc
 import time
