@@ -175,11 +175,12 @@
    
    
    EXEMPLARY CLAUSE:
-   10. Any and all code submitted to this repository will have varying
-       levels of use.  Open Source material will be labeled "follows 
-       licensing guidelines set forth in "Apache 2.0"."  If code files
-       include the words "Not for Public Use."  There are no available
-       licenses for said files and are considered "READ-ONLY".
+   
+  10. Any and all code submitted to this repository will have varying
+      levels of use.  Open Source material will be labeled "follows 
+      licensing guidelines set forth in "Apache 2.0"."  If code files
+      include the words "Not for Public Use."  There are no available
+      licenses for said files and are considered "READ-ONLY".
 
 
    END OF TERMS AND CONDITIONS
