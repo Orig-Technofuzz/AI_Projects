@@ -1,16 +1,22 @@
-import random
 
+#copyright 2019 Chris Messick
+#Not for Public Use
+
+
+#this program implements minimax search
+#with 2 players against each other in
+#tic-tac-toe, to end the game in a draw
+
+import random
 
 max_depth = 9
 
-
-
-
+#class that handles the board and all moves
 class instance:
     def __init__(self,value=[],depth=0):
         self.board = value
         self.depth = depth
-    
+    #equivalence definition
     def __eq__(self,other):
         if self.board[0] != other.board[0]:
             return False
@@ -19,7 +25,7 @@ class instance:
         if self.board[2] != other.board[2]:
             return False
         return True
-    
+    #copies the board
     def copy(self):
         temp_list=[]
         temp_list.append(self.board[0].copy())
@@ -27,10 +33,12 @@ class instance:
         temp_list.append(self.board[2].copy())
         temp=instance(temp_list)
         return temp        
-
+    
+    #make the best move for the player
     def make_move(self,move,letter):
         self.board[move[0]][move[1]] = letter
-
+    
+    #get list of possible moves
     def possible_moves(self):
         moves = []
         for row in range(0,3):
@@ -38,20 +46,21 @@ class instance:
                 if self.board[row][cell] is None:
                     moves.append([row,cell])
         return moves
-
+    #check who's turn it is
     def active_turn(self):
         if self.depth % 2 == 1:
             return "O"
         else:
             return "X"
 
-
+    #print the current board
     def print_cur(self):
         for f in self.board:
                 print(f)
         print('\n')
         
-    
+    #get the resulting score
+    #if 
     def score(self):
         if self.goal_reached() == "X":
             return 10 - self.depth 
@@ -61,7 +70,7 @@ class instance:
             return 0
 
 
-
+    #game is over if board is filled
     def game_over(self):
         for row in self.board:
             for cell in row:
@@ -70,7 +79,7 @@ class instance:
             
         return True
         
-
+    #check to see if someone had won the game
     def goal_reached(self):
         Winner_X = ["X", "X", "X"]
         Winner_O = ["O", "O", "O"]
@@ -123,12 +132,12 @@ empty_board = instance([[None, None, None],[None, None, None],[None, None, None]
 board1 = instance([[None, None, None],[None, None, None],[None, None, None]])
 
 
-
+#recursive minimax search
 def minimax(game, depth, isMaximize):
     if game.goal_reached() != False:
         return game.score()
     depth+=1
-
+    #if it's X's move then maximize the search
     if isMaximize:
         bestX = -100
         for move in game.possible_moves():
@@ -137,6 +146,7 @@ def minimax(game, depth, isMaximize):
             temp.depth=depth
             bestX = max(bestX, minimax(temp, depth,False))
         return bestX
+    #if it's O's move then minimize the search
     else:
         bestO = 100
         for move in game.possible_moves():
@@ -148,30 +158,35 @@ def minimax(game, depth, isMaximize):
         return bestO
 
 
-
+#define best move for player "X"
 def Best_XMove(player,depth):
     best = 100
     bestMove=[None,None]
-
+    #for all possible moves,
+    #check to see if it's the best move
     for i in range(0,3):
         for j in range(0,3):
             if board1.board[i][j] == None:
                 board1.board[i][j] = player
+                #start minimax search
                 moveVal = minimax(board1,depth,True)
                 board1.board[i][j] = None
                 if moveVal < best:
                     bestMove=[i,j]
                     best = moveVal
     return bestMove
-                
+
+#define the best move for player "O"                
 def Best_OMove(player,depth):
     best = -100
     bestMove=[None,None]
-
+    #for all possible moves,
+    #check to see if it's the best move
     for i in range(0,3):
         for j in range(0,3):
             if board1.board[i][j] == None:
                 board1.board[i][j] = player
+                #start minimax search
                 moveVal = minimax(board1,depth,False)
                 board1.board[i][j] = None
                 if moveVal > best:
@@ -187,14 +202,14 @@ def make_random_move(game, player):
     while game.board[random1-1][random2-1] == None:
         game.make_move([random1-1,random2-1], player)
         
-
-
+#main function
 def start():
     depth = 0
     if board1 == empty_board:
         make_random_move(board1,"X")
         depth+=1
-    
+    #while no player has won, continue
+    #playing the game
     while not board1.goal_reached():  
         board1.print_cur()
         board1.make_move(Best_OMove("O",depth),"O")
@@ -216,3 +231,5 @@ def start():
     else:
         print("It's a Tie!")
 
+        
+start()
